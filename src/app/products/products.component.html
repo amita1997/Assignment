@@ -1,0 +1,31 @@
+<section class="col-sm-12 p-2 m-2 row">
+    <div class="text-center header py-3 row">
+       <h2>Unlock Your Lifestyle: Buy the Perfect Product Today!</h2>
+    </div>
+    <div class="col-sm-12 d-flex">
+        <div class="col-sm-4 ml-auto p-2">
+            <label for="cars">Filter By Category</label>
+            <select name="cars" id="cars"  form="carform" (change)="filterByCategory($event)" style="margin-left: 14px;">
+                <option value="All">All</option>
+                <option  *ngFor="let data of categoriesList" value="{{data}}">{{data}}</option>
+            </select>
+        </div>
+
+    </div> 
+    <div class="col-sm-12 text-center" *ngIf="!isLoading">
+        <div class="spinner-grow" role="status">
+            <!-- <span class="sr-only">Loading...</span> -->
+          </div>
+    </div>     
+    <div class="card border shodow mb-3 m-2 p-3" style="max-width: 18rem; background-color: #e0d8d852;"
+        *ngFor="let product of productList">
+        <img src="{{product?.thumbnail}}" alt="Image 1" style="width: 100%; height:150px;">
+        <div class="title py-2">
+            <h5 class="m-0 ">Title: {{ product.title }}</h5>
+        </div>
+        <div class="Content">
+            <p class="m-0 pb-2">Price: <strong>{{ product.price | currency:'USD' }}</strong></p>
+        </div>
+        <button type="button" class="btn btn-outline-secondary" routerLink="/products/product-details/{{product.id}}">Full Details</button>
+    </div>
+</section>
